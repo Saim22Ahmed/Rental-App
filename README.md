@@ -1,4 +1,4 @@
-# airbnb_app
+# Airbnb Clone App
 
 A new Flutter project.
 
