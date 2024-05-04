@@ -18,16 +18,16 @@ class HomePage extends StatelessWidget {
       // appbar
       appBar: AppBar(
         // backgroundColor: themecolor,
-        toolbarHeight: 160.h,
+        toolbarHeight: 165.h,
         flexibleSpace: Container(
           child: Stack(
             children: [
               //property type list
 
               Positioned(
-                bottom: 0.0,
-                left: 0.0,
-                right: 0.0,
+                bottom: 5.0.h,
+                left: 0.0.w,
+                right: 0.0.w,
                 child: CategoryList(),
               ),
 
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                     onPressed: () {},
                   ),
                   right: 8.w,
-                  top: 70.h),
+                  top: 60.h),
 
               //search bar
               MySearchBar(onTap: () {

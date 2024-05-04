@@ -39,7 +39,7 @@ class _CategoryListState extends State<CategoryList> {
                 });
               },
               child: Container(
-                margin: EdgeInsets.only(right: 4.w, left: 4, top: 4.h),
+                margin: EdgeInsets.only(right: 4.w, left: 4.w, top: 4.h),
                 width: 82.w,
                 child: Column(
                   // mainAxisAlignment: MainAxisAlignment.end,
@@ -61,7 +61,7 @@ class _CategoryListState extends State<CategoryList> {
                     // bottom line based on index
                     (index == selectedIndex)
                         ? Container(
-                            margin: EdgeInsets.only(top: 10.h),
+                            margin: EdgeInsets.only(top: 8.h),
                             height: 2.h,
                             width: 60.w,
                             color: themecolor)

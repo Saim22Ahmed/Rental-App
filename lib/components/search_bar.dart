@@ -15,7 +15,7 @@ class MySearchBar extends StatelessWidget {
     return Positioned(
       left: 16.w,
       right: 72.w,
-      top: 64.h,
+      top: 55.h,
       child: GestureDetector(
         onTap: onTap,
         child: Hero(
