@@ -10,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() {
   runApp(ProviderScope(
       child: DevicePreview(
-          enabled: false, builder: (BuildContext context) => const MyApp())));
+          enabled: true, builder: (BuildContext context) => const MyApp())));
 }
 
 class MyApp extends StatelessWidget {

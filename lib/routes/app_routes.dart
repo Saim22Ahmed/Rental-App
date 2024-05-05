@@ -12,7 +12,7 @@ class AppRouter {
         name: 'home',
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const HomePage();
+          return HomePage();
         },
       ),
 
@@ -21,7 +21,7 @@ class AppRouter {
           name: 'bookingDetails',
           path: '/bookingDetails',
           builder: (BuildContext context, GoRouterState state) {
-            return const BookingDetailsPage();
+            return BookingDetailsPage();
           })
     ],
   );
