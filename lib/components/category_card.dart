@@ -1,6 +1,7 @@
 import 'package:airbnb_app/models/category_model/category_model.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoryCard extends StatefulWidget {
   final CategoryModel category;
@@ -28,19 +29,19 @@ class _CategoryCardState extends State<CategoryCard> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
-      decoration: BoxDecoration(
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 1.0,
-            spreadRadius: 1.0,
-            offset: Offset(0.0, 1.0),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(16.0),
-        color: Theme.of(context).colorScheme.onBackground,
-      ),
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      // decoration: BoxDecoration(
+      //   boxShadow: const [
+      //     BoxShadow(
+      //       color: Colors.black12,
+      //       blurRadius: 1.0,
+      //       spreadRadius: 1.0,
+      //       offset: Offset(0.0, 1.0),
+      //     ),
+      //   ],
+      //   borderRadius: BorderRadius.circular(16.0),
+      //   color: Theme.of(context).colorScheme.onBackground,
+      // ),
+      margin: const EdgeInsets.symmetric(vertical: 15.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -81,8 +82,8 @@ class _CategoryCardState extends State<CategoryCard> {
                     );
                   },
                   decorator: DotsDecorator(
-                    color: Colors.white.withOpacity(0.8),
-                    activeColor: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withOpacity(0.5),
+                    activeColor: Colors.white.withOpacity(0.8),
                     size: const Size.square(8.0),
                     activeSize: const Size(12.0, 8.0),
                     activeShape: RoundedRectangleBorder(
@@ -94,23 +95,37 @@ class _CategoryCardState extends State<CategoryCard> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 5.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '${widget.category.country}, ${widget.category.city}',
-                  style: textTheme.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8.0),
+                Text('${widget.category.country}, ${widget.category.city}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    )),
+                const SizedBox(height: 0.0),
                 Text(
                   widget.category.description!,
+                  style: TextStyle(
+                      color: Colors.grey[500], fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 8.0),
                 Text(
                   widget.category.amenities!.join(', '),
+                  style:
+                      TextStyle(fontWeight: FontWeight.w500, fontSize: 14.sp),
+                ),
+                2.verticalSpace,
+                Row(
+                  children: [
+                    Text(
+                      '\$${widget.category.pricePerNight!.toInt().toString()}',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 14.sp),
+                    ),
+                    4.horizontalSpace,
+                    Text('night')
+                  ],
                 ),
               ],
             ),

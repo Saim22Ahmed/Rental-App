@@ -48,6 +48,7 @@ dependencies:
   dots_indicator: ^3.0.0
   flutter_gen: ^5.4.0
   flutter_gen_runner: ^5.4.0
+  icons_plus: ^5.0.0
 
 dev_dependencies:
   flutter_test:

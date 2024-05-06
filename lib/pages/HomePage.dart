@@ -4,58 +4,27 @@ import 'package:airbnb_app/components/category_card.dart';
 import 'package:airbnb_app/components/category_list.dart';
 import 'package:airbnb_app/components/search_bar.dart';
 import 'package:airbnb_app/constants/colors.dart';
+import 'package:airbnb_app/data/category_api.dart';
 import 'package:airbnb_app/gen/assets.gen.dart';
 import 'package:airbnb_app/models/category_model/category_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   HomePage({super.key});
 
-  final List<CategoryModel> sampleData = [
-    CategoryModel(
-      id: '1',
-      description: "Description",
-      roomType: "Room Type",
-      pricePerNight: 100,
-      country: "Country",
-      city: "City",
-      maxGuests: 10,
-      categoryType: "Category Type",
-      amenities: ["amenities 1", "amenities 2"],
-      mainPhotoUrl: 'assets/images/rentImage.jpg',
-      photoUrls: [
-        Assets.images.rentImage.path,
-        Assets.images.rentImage2.path,
-      ],
-    ),
-    CategoryModel(
-      id: '1',
-      description: "Description",
-      roomType: "Room Type",
-      pricePerNight: 100,
-      country: "Country",
-      city: "City",
-      maxGuests: 10,
-      categoryType: "Category Type",
-      amenities: ["amenities 1", "amenities 2"],
-      mainPhotoUrl: 'assets/images/rentImage.jpg',
-      photoUrls: [
-        Assets.images.rentImage.path,
-        Assets.images.rentImage2.path,
-      ],
-    )
-  ];
+  // List<CategoryModel> categoryModels =
+  //     categoryJsonData.map((data) => CategoryModel.fromJson(data)).toList();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-        // backgroundColor: Theme.of(context).colorScheme.background,
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Theme.of(context).colorScheme.background,
 
         // appbar
         appBar: AppBar(
@@ -84,17 +53,17 @@ class HomePage extends StatelessWidget {
                 ),
 
                 // tune icon
-                Positioned(
-                    child: IconButton(
-                      icon: Icon(Icons.tune),
-                      onPressed: () {
-                        log(
-                          Assets.images.rentImage.path,
-                        );
-                      },
-                    ),
-                    right: 8.w,
-                    top: 60.h),
+                // Positioned(
+                //     child: IconButton(
+                //       icon: Icon(Icons.tune),
+                //       onPressed: () {
+                //         log(
+                //           Assets.images.rentImage.path,
+                //         );
+                //       },
+                //     ),
+                //     right: 8.w,
+                //     top: 60.h),
 
                 //search bar
                 MySearchBar(onTap: () {
@@ -107,11 +76,20 @@ class HomePage extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: ListView.builder(
+              cacheExtent: 500,
+              scrollDirection: Axis.vertical,
               physics: const BouncingScrollPhysics(),
-              itemCount: sampleData.length,
+              itemCount: ref.watch(categoryProvider).length,
               itemBuilder: (context, index) {
+                //reversed index
+
+                final categoryModels = ref
+                    .watch(categoryProvider)
+                    .map((data) => CategoryModel.fromJson(data))
+                    .toList();
+
                 return CategoryCard(
-                  category: sampleData[index],
+                  category: categoryModels[index],
                 );
               }),
         ));

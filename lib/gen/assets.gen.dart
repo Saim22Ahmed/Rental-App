@@ -20,8 +20,25 @@ class $AssetsImagesGen {
   AssetGenImage get rentImage2 =>
       const AssetGenImage('assets/images/rentImage2.jpg');
 
+  /// File path: assets/images/rentImage3.jpg
+  AssetGenImage get rentImage3 =>
+      const AssetGenImage('assets/images/rentImage3.jpg');
+
+  /// File path: assets/images/rentImage4.jpg
+  AssetGenImage get rentImage4 =>
+      const AssetGenImage('assets/images/rentImage4.jpg');
+
+  /// File path: assets/images/rentImage5.jpg
+  AssetGenImage get rentImage5 =>
+      const AssetGenImage('assets/images/rentImage5.jpg');
+
+  /// File path: assets/images/rentImage6.jpg
+  AssetGenImage get rentImage6 =>
+      const AssetGenImage('assets/images/rentImage6.jpg');
+
   /// List of all assets
-  List<AssetGenImage> get values => [rentImage, rentImage2];
+  List<AssetGenImage> get values =>
+      [rentImage, rentImage2, rentImage3, rentImage4, rentImage5, rentImage6];
 }
 
 class Assets {

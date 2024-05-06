@@ -41,14 +41,17 @@ class CategoryList extends ConsumerWidget {
                     Icon(
                       ref.watch(categoryListProvider).categoryList[index]
                           ['icon'],
-                      color: theme.onInverseSurface,
+                      color:
+                          Selectedindex == index ? theme.primary : Colors.grey,
                     ),
                     SizedBox(height: 2.h),
                     Text(
                       ref.watch(categoryListProvider).categoryList[index]
                           ['type'],
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: theme.onInverseSurface,
+                            color: Selectedindex == index
+                                ? theme.primary
+                                : Colors.grey,
                             fontWeight: Selectedindex == index
                                 ? FontWeight.bold
                                 : FontWeight.normal,
@@ -60,7 +63,7 @@ class CategoryList extends ConsumerWidget {
                             margin: EdgeInsets.only(top: 8.h),
                             height: 2.h,
                             width: 60.w,
-                            color: themecolor)
+                            color: Theme.of(context).colorScheme.primary)
                         : SizedBox(),
                   ],
                 ),
