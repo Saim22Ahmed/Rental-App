@@ -5,7 +5,7 @@ ThemeData lightTheme = ThemeData(
   fontFamily: GoogleFonts.figtree().fontFamily,
   brightness: Brightness.light,
   colorScheme: ColorScheme.light(
-    background: Colors.grey[100]!,
+    background: Colors.white!,
     primary: Colors.black,
     onPrimary: Color(0xff00B4D8),
     onPrimaryContainer: Colors.grey[500]!,

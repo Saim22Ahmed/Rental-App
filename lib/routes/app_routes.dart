@@ -20,9 +20,19 @@ class AppRouter {
       GoRoute(
           name: 'bookingDetails',
           path: '/bookingDetails',
-          builder: (BuildContext context, GoRouterState state) {
-            return BookingDetailsPage();
-          })
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: Duration(milliseconds: 300),
+              barrierColor: Colors.black.withOpacity(0.5),
+              opaque: false,
+              child: BookingDetailsPage(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return child;
+              },
+            );
+          }),
     ],
   );
 }
