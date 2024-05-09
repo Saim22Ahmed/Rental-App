@@ -46,7 +46,7 @@ class MyTextFormField extends StatelessWidget {
         expands: expands ?? false,
         controller: controller,
         onTapOutside: (event) {
-          FocusScope.of(context).unfocus();
+          FocusManager.instance.primaryFocus?.unfocus();
         },
         textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,

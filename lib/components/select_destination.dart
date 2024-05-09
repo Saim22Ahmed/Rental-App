@@ -1,9 +1,12 @@
 import 'package:airbnb_app/components/myTextField.dart';
+import 'package:airbnb_app/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SelectDestination extends StatelessWidget {
-  const SelectDestination({super.key});
+  const SelectDestination({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +45,13 @@ class SelectDestination extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(16.r),
-                            child: Image.network(
-                              'https://picsum.photos/200/300',
-                              height: 100.h,
-                              width: 100.w,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                              borderRadius: BorderRadius.circular(16.r),
+                              child: Image.asset(
+                                Assets.images.rentImage.path,
+                                width: 100.w,
+                                height: 100.h,
+                                fit: BoxFit.cover,
+                              )),
                           8.verticalSpace,
                           Padding(
                             padding: EdgeInsets.only(left: 8),

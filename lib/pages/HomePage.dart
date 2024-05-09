@@ -7,6 +7,7 @@ import 'package:airbnb_app/constants/colors.dart';
 import 'package:airbnb_app/data/category_api.dart';
 import 'package:airbnb_app/gen/assets.gen.dart';
 import 'package:airbnb_app/models/category_model/category_model.dart';
+import 'package:airbnb_app/pages/BookingDetailsPage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -68,6 +69,9 @@ class HomePage extends ConsumerWidget {
                 //search bar
                 MySearchBar(onTap: () {
                   context.pushNamed('bookingDetails');
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return BookingDetailsPage();
+                  // }));
                 })
               ],
             ),

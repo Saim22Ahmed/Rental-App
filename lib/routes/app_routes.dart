@@ -26,11 +26,11 @@ class AppRouter {
               transitionDuration: Duration(milliseconds: 300),
               barrierColor: Colors.black.withOpacity(0.5),
               opaque: false,
-              child: BookingDetailsPage(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return child;
               },
+              child: BookingDetailsPage(),
             );
           }),
     ],
