@@ -17,7 +17,7 @@ class CategoryList extends ConsumerWidget {
       height: 65.h,
       child: ListView.builder(
           physics: const BouncingScrollPhysics(),
-          shrinkWrap: true,
+          // shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: ref.watch(categoryListProvider).categoryList.length,
           itemBuilder: (context, index) {

@@ -5,12 +5,13 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   // initializing go router
-  late final GoRouter router = GoRouter(
-    routes: <GoRoute>[
+  static final GoRouter router = GoRouter(
+    initialLocation: '/home',
+    routes: <RouteBase>[
       // Home Route
       GoRoute(
         name: 'home',
-        path: '/',
+        path: '/home',
         builder: (BuildContext context, GoRouterState state) {
           return HomePage();
         },
@@ -18,21 +19,22 @@ class AppRouter {
 
       //Booking Details Route
       GoRoute(
-          name: 'bookingDetails',
-          path: '/bookingDetails',
-          pageBuilder: (BuildContext context, GoRouterState state) {
-            return CustomTransitionPage(
-              key: state.pageKey,
-              transitionDuration: Duration(milliseconds: 300),
-              barrierColor: Colors.black.withOpacity(0.5),
-              opaque: false,
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return child;
-              },
-              child: BookingDetailsPage(),
-            );
-          }),
+        name: 'bookingDetails',
+        path: '/bookingDetails',
+        pageBuilder: (BuildContext context, GoRouterState state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            transitionDuration: Duration(milliseconds: 300),
+            barrierColor: Colors.black.withOpacity(0.5),
+            opaque: false,
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return child;
+            },
+            child: BookingDetailsPage(),
+          );
+        },
+      ),
     ],
   );
 }

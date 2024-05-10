@@ -1,73 +1,97 @@
 import 'package:airbnb_app/components/myTextField.dart';
 import 'package:airbnb_app/gen/assets.gen.dart';
+import 'package:airbnb_app/models/booking_model/booking_step_model.dart';
+import 'package:airbnb_app/provider/booking_steps_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SelectDestination extends StatelessWidget {
+class SelectDestination extends ConsumerWidget {
   const SelectDestination({
     super.key,
+    required this.step,
   });
 
+  final StateProvider<BookingStep> step;
+
   @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      clipBehavior: Clip.antiAlias,
-      child: Container(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Where to?',
-                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
-            SizedBox(height: 16.h),
-            TextFormField(
-              onTap: () {},
-              decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(16),
-                  hintText: 'Search destination',
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.r),
-                  )),
-            ),
-            16.verticalSpace,
-            SizedBox(
-              height: 130.h,
-              child: ListView.builder(
-                  cacheExtent: 500,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(right: 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                              borderRadius: BorderRadius.circular(16.r),
-                              child: Image.asset(
-                                Assets.images.rentImage.path,
-                                width: 100.w,
-                                height: 100.h,
-                                fit: BoxFit.cover,
-                              )),
-                          8.verticalSpace,
-                          Padding(
-                            padding: EdgeInsets.only(left: 8),
-                            child: Text(
-                              'Placeholder',
-                              style: TextStyle(fontSize: 14.sp),
-                            ),
-                          )
-                        ],
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Material(
+        type: MaterialType.transparency,
+        borderRadius: BorderRadius.circular(16.r),
+        child: Card(
+          elevation: 0,
+          clipBehavior: Clip.antiAlias,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            height:
+                ref.watch(step) == BookingStep.selectDestination ? 280.h : 60.h,
+            padding: EdgeInsets.all(16),
+            child: ref.watch(step) == BookingStep.selectDestination
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Where to?',
+                          style: TextStyle(
+                              fontSize: 18.sp, fontWeight: FontWeight.bold)),
+                      SizedBox(height: 16.h),
+                      MyTextFormField(
+                          hintText: 'Search destination', obscuretext: false),
+                      16.verticalSpace,
+                      SizedBox(
+                        height: 130.h,
+                        child: ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            cacheExtent: 500,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: EdgeInsets.only(right: 8),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(16.r),
+                                        child: Image.network(
+                                          'https://picsum.photos/200/300?random=$index',
+                                          width: 100.w,
+                                          height: 100.h,
+                                          fit: BoxFit.cover,
+                                        )),
+                                    8.verticalSpace,
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 8),
+                                      child: Text(
+                                        'Placeholder',
+                                        style: TextStyle(fontSize: 14.sp),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            }),
                       ),
-                    );
-                  }),
-            ),
-          ],
-        ),
-      ),
-    );
+                    ],
+                  ).animate(delay: 200.ms).fadeIn(duration: 200.ms)
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'When',
+                        style: TextStyle(fontSize: 18.sp),
+                      ),
+                      Text(
+                        'I\'m flexible',
+                        style: TextStyle(
+                            fontSize: 18.sp, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+          ),
+        ));
   }
 }

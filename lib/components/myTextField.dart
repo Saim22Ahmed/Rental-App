@@ -35,7 +35,7 @@ class MyTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50.h,
+      height: 50,
       child: TextFormField(
         autovalidateMode: autovalidateMode,
         validator: validator,
@@ -54,7 +54,7 @@ class MyTextFormField extends StatelessWidget {
         textInputAction: TextInputAction.next,
         // autofocus: true,
         maxLines: maxlines,
-        cursorColor: Colors.blue,
+        cursorColor: Theme.of(context).colorScheme.primary.withOpacity(0.8),
 
         style: TextStyle(
           // height: 1.h,
@@ -64,14 +64,15 @@ class MyTextFormField extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 8.w),
           filled: true,
-          fillColor: const Color(0x379E9E9E),
+          fillColor:
+              Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(4.r),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.black,
+              color: Theme.of(context).colorScheme.primary,
               width: 1.w,
             ),
             borderRadius: BorderRadius.circular(4.r),

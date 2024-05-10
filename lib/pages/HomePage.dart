@@ -53,19 +53,6 @@ class HomePage extends ConsumerWidget {
                   child: CategoryList(),
                 ),
 
-                // tune icon
-                // Positioned(
-                //     child: IconButton(
-                //       icon: Icon(Icons.tune),
-                //       onPressed: () {
-                //         log(
-                //           Assets.images.rentImage.path,
-                //         );
-                //       },
-                //     ),
-                //     right: 8.w,
-                //     top: 60.h),
-
                 //search bar
                 MySearchBar(onTap: () {
                   context.pushNamed('bookingDetails');
