@@ -1,3 +1,4 @@
+import 'package:airbnb_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,7 +9,7 @@ ThemeData lightTheme = ThemeData(
     background: Colors.white!,
     primary: Colors.black,
     onPrimary: Color(0xff00B4D8),
-    onPrimaryContainer: Colors.grey[500]!,
+    onPrimaryContainer: Colors.white,
     secondary: Colors.grey[200]!,
     onSecondary: Colors.grey[600]!,
     tertiary: Color(0xff00B4D8),
@@ -19,7 +20,7 @@ ThemeData lightTheme = ThemeData(
   ),
   hintColor: Colors.grey[300],
   shadowColor: Colors.white70,
-  splashColor: Color(0xff00B4D8),
+  splashColor: themecolor,
 );
 
 

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:airbnb_app/components/category_card.dart';
 import 'package:airbnb_app/components/category_list.dart';
+import 'package:airbnb_app/components/myNavBar.dart';
 import 'package:airbnb_app/components/search_bar.dart';
 import 'package:airbnb_app/constants/colors.dart';
 import 'package:airbnb_app/data/category_api.dart';
@@ -26,6 +27,7 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
+        bottomNavigationBar: MyNavBar(),
 
         // appbar
         appBar: AppBar(
@@ -65,7 +67,10 @@ class HomePage extends ConsumerWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+          ),
           child: ListView.builder(
               cacheExtent: 500,
               scrollDirection: Axis.vertical,

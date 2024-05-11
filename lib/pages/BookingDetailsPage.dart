@@ -1,9 +1,12 @@
 import 'dart:developer';
 import 'dart:ui';
 
+import 'package:airbnb_app/components/myNavBar.dart';
 import 'package:airbnb_app/components/select_date_widget.dart';
 import 'package:airbnb_app/components/select_destination.dart';
+import 'package:airbnb_app/constants/colors.dart';
 import 'package:airbnb_app/models/booking_model/booking_step_model.dart';
+import 'package:airbnb_app/pages/SelectGuestsWidget.dart';
 import 'package:airbnb_app/provider/booking_steps_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,84 +23,135 @@ class BookingDetailsPage extends StatefulWidget {
 
 class _BookingDetailsPageState extends State<BookingDetailsPage> {
   final stepProvider =
-      StateProvider<BookingStep>((ref) => BookingStep.selectDate);
+      StateProvider<BookingStep>((ref) => BookingStep.selectDestination);
 
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-      child: Scaffold(
-        // resizeToAvoidBottomInset: false,
-        backgroundColor:
-            Theme.of(context).colorScheme.background.withOpacity(0.5),
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            icon: Icon(
-              IonIcons.close,
-              size: 24.sp,
-            ),
-            onPressed: () {
-              // Navigator.pop(context);
-              context.pop();
-            },
-          ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              //Stays
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Stays',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              //Experiences
-              TextButton(
-                onPressed: () {},
-                child: Text('Experiences',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-              )
-            ],
-          ),
+        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+        child: Consumer(builder: (context, ref, child) {
+          return Scaffold(
 
-          //actions
-          actions: [SizedBox(width: 48.w)],
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-              padding: EdgeInsets.all(16.w),
-              child: Column(
-                children: [
-                  //select Destination
-                  Consumer(builder: (context, ref, child) {
-                    return GestureDetector(
-                        onTap: () {
-                          ref.read(stepProvider.notifier).state =
-                              BookingStep.selectDestination;
-                        },
-                        child: Hero(
-                            tag: 'search',
-                            child: SelectDestination(
+              // resizeToAvoidBottomInset: false,
+              backgroundColor: Colors.white,
+              // Theme.of(context).colorScheme.background.withOpacity(0.2),
+              appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                leading: IconButton(
+                  icon: Icon(
+                    IonIcons.close,
+                    size: 24.sp,
+                  ),
+                  onPressed: () {
+                    // Navigator.pop(context);
+                    context.pop();
+                  },
+                ),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //Stays
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Stays',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    //Experiences
+                    TextButton(
+                      onPressed: () {},
+                      child: Text('Experiences',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    )
+                  ],
+                ),
+
+                //actions
+                actions: [SizedBox(width: 48.w)],
+              ),
+              body: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Padding(
+                    padding: EdgeInsets.all(16.w),
+                    child: Column(
+                      children: [
+                        //select Destination
+                        GestureDetector(
+                            onTap: () {
+                              ref.read(stepProvider.notifier).state =
+                                  BookingStep.selectDestination;
+                            },
+                            child: Hero(
+                                tag: 'search',
+                                child: SelectDestination(
+                                  step: stepProvider,
+                                ))),
+                        // Select Date
+                        GestureDetector(
+                            onTap: () {
+                              ref.read(stepProvider.notifier).state =
+                                  BookingStep.selectDate;
+                            },
+                            child: SelectDateWidget(
                               step: stepProvider,
-                            )));
-                  }),
-                  // Select Date
-                  Consumer(builder: (context, ref, child) {
-                    return GestureDetector(
-                        onTap: () {
-                          ref.read(stepProvider.notifier).state =
-                              BookingStep.selectDate;
-                        },
-                        child: SelectDateWidget(
-                          step: stepProvider,
+                            )),
+
+                        // Select Guest
+                        (ref.watch(stepProvider) == BookingStep.selectDate)
+                            ? Container()
+                            : GestureDetector(
+                                onTap: () {
+                                  ref.read(stepProvider.notifier).state =
+                                      BookingStep.selectGuests;
+                                },
+                                child: SelectGuestsWidget(
+                                  step: stepProvider,
+                                ))
+                      ],
+                    )),
+              ),
+              bottomNavigationBar:
+                  (ref.watch(stepProvider) == BookingStep.selectDate)
+                      ? null
+                      : BottomAppBar(
+                          padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          notchMargin: 0,
+                          color: Colors.white,
+                          surfaceTintColor: Colors.white,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  ref.read(stepProvider.notifier).state =
+                                      BookingStep.selectDestination;
+                                },
+                                child: Text(
+                                  'Clear all',
+                                  style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Colors.black,
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              FilledButton.icon(
+                                  style: FilledButton.styleFrom(
+                                      backgroundColor: themecolor,
+                                      foregroundColor: Colors.white,
+                                      minimumSize: Size(100.h, 55.w),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.r))),
+                                  onPressed: () {},
+                                  icon: Icon(OctIcons.search, size: 18.sp),
+                                  label: Text("Search",
+                                      style: TextStyle(fontSize: 19.sp)))
+                            ],
+                          ),
                         ));
-                  })
-                ],
-              )),
-        ),
-      ),
-    );
+        }));
   }
 }

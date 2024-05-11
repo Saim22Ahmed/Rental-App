@@ -1,13 +1,14 @@
+import 'package:airbnb_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData darkTheme = ThemeData(
-  fontFamily: GoogleFonts.josefinSans().fontFamily,
+  fontFamily: GoogleFonts.figtree().fontFamily,
   brightness: Brightness.dark,
   colorScheme: ColorScheme.dark(
     background: Colors.black,
     primary: Colors.white!,
-    onPrimaryContainer: Color(0xff00B4D8),
+    onPrimaryContainer: Colors.grey[900]!.withOpacity(0.9),
     onPrimary: Color(0xff00B4D8),
     secondary: Colors.grey[900]!,
     tertiary: Colors.grey[800]!,
@@ -19,7 +20,7 @@ ThemeData darkTheme = ThemeData(
   ),
   hintColor: Colors.grey[600],
   shadowColor: Colors.grey[400],
-  splashColor: Colors.grey[900],
+  splashColor: themecolor,
 );
 
 

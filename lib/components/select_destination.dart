@@ -22,10 +22,12 @@ class SelectDestination extends ConsumerWidget {
         type: MaterialType.transparency,
         borderRadius: BorderRadius.circular(16.r),
         child: Card(
-          elevation: 0,
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+          elevation: ref.watch(step) == BookingStep.selectDestination ? 8 : 2,
           clipBehavior: Clip.antiAlias,
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
+            duration: const Duration(milliseconds: 300),
             height:
                 ref.watch(step) == BookingStep.selectDestination ? 280.h : 60.h,
             padding: EdgeInsets.all(16),
@@ -76,18 +78,21 @@ class SelectDestination extends ConsumerWidget {
                             }),
                       ),
                     ],
-                  ).animate(delay: 200.ms).fadeIn(duration: 200.ms)
+                  ).animate(delay: 300.ms).fadeIn(duration: 300.ms)
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'When',
-                        style: TextStyle(fontSize: 18.sp),
+                        'Where',
+                        style: TextStyle(
+                            fontSize: 16.sp,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
                       ),
                       Text(
                         'I\'m flexible',
                         style: TextStyle(
-                            fontSize: 18.sp, fontWeight: FontWeight.bold),
+                            fontSize: 16.sp, fontWeight: FontWeight.bold),
                       )
                     ],
                   ),

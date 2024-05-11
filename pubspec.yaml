@@ -50,6 +50,7 @@ dependencies:
   flutter_gen_runner: ^5.4.0
   icons_plus: ^5.0.0
   flutter_animate: ^4.5.0
+  syncfusion_flutter_calendar: ^25.2.3
 
 dev_dependencies:
   flutter_test:
