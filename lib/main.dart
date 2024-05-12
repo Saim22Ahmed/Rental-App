@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 void main() {
   runApp(ProviderScope(
       child: DevicePreview(
-          enabled: true, builder: (BuildContext context) => const MyApp())));
+          enabled: false, builder: (BuildContext context) => const MyApp())));
 }
 
 class MyApp extends StatelessWidget {

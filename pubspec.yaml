@@ -51,6 +51,8 @@ dependencies:
   icons_plus: ^5.0.0
   flutter_animate: ^4.5.0
   syncfusion_flutter_calendar: ^25.2.3
+  redacted: ^1.0.11
+  
 
 dev_dependencies:
   flutter_test:

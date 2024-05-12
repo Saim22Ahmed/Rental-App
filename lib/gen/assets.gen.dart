@@ -16,6 +16,26 @@ class $AssetsImagesGen {
   AssetGenImage get rentImage =>
       const AssetGenImage('assets/images/rentImage.jpg');
 
+  /// File path: assets/images/rentImage10.jpg
+  AssetGenImage get rentImage10 =>
+      const AssetGenImage('assets/images/rentImage10.jpg');
+
+  /// File path: assets/images/rentImage11.jpg
+  AssetGenImage get rentImage11 =>
+      const AssetGenImage('assets/images/rentImage11.jpg');
+
+  /// File path: assets/images/rentImage12.jpg
+  AssetGenImage get rentImage12 =>
+      const AssetGenImage('assets/images/rentImage12.jpg');
+
+  /// File path: assets/images/rentImage13.jpg
+  AssetGenImage get rentImage13 =>
+      const AssetGenImage('assets/images/rentImage13.jpg');
+
+  /// File path: assets/images/rentImage14.jpg
+  AssetGenImage get rentImage14 =>
+      const AssetGenImage('assets/images/rentImage14.jpg');
+
   /// File path: assets/images/rentImage2.jpg
   AssetGenImage get rentImage2 =>
       const AssetGenImage('assets/images/rentImage2.jpg');
@@ -36,9 +56,35 @@ class $AssetsImagesGen {
   AssetGenImage get rentImage6 =>
       const AssetGenImage('assets/images/rentImage6.jpg');
 
+  /// File path: assets/images/rentImage7.jpg
+  AssetGenImage get rentImage7 =>
+      const AssetGenImage('assets/images/rentImage7.jpg');
+
+  /// File path: assets/images/rentImage8.jpg
+  AssetGenImage get rentImage8 =>
+      const AssetGenImage('assets/images/rentImage8.jpg');
+
+  /// File path: assets/images/rentImage9.jpg
+  AssetGenImage get rentImage9 =>
+      const AssetGenImage('assets/images/rentImage9.jpg');
+
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [rentImage, rentImage2, rentImage3, rentImage4, rentImage5, rentImage6];
+  List<AssetGenImage> get values => [
+        rentImage,
+        rentImage10,
+        rentImage11,
+        rentImage12,
+        rentImage13,
+        rentImage14,
+        rentImage2,
+        rentImage3,
+        rentImage4,
+        rentImage5,
+        rentImage6,
+        rentImage7,
+        rentImage8,
+        rentImage9
+      ];
 }
 
 class Assets {

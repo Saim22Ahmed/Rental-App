@@ -7,14 +7,17 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:redacted/redacted.dart';
 
 class SelectDestination extends ConsumerWidget {
-  const SelectDestination({
+  SelectDestination({
     super.key,
     required this.step,
   });
 
   final StateProvider<BookingStep> step;
+
+  final destinations = ['I\'m Flexible', 'Middle East', 'UAE', 'Europe', 'UK'];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,7 +32,7 @@ class SelectDestination extends ConsumerWidget {
             color: Theme.of(context).colorScheme.onPrimaryContainer,
             duration: const Duration(milliseconds: 300),
             height:
-                ref.watch(step) == BookingStep.selectDestination ? 280.h : 60.h,
+                ref.watch(step) == BookingStep.selectDestination ? 340.h : 60.h,
             padding: EdgeInsets.all(16),
             child: ref.watch(step) == BookingStep.selectDestination
                 ? Column(
@@ -40,10 +43,16 @@ class SelectDestination extends ConsumerWidget {
                               fontSize: 18.sp, fontWeight: FontWeight.bold)),
                       SizedBox(height: 16.h),
                       MyTextFormField(
-                          hintText: 'Search destination', obscuretext: false),
+                          prefixIcon: Icon(
+                            color: Colors.grey,
+                            Icons.search_outlined,
+                            size: 20.h,
+                          ),
+                          hintText: 'Search destination',
+                          obscuretext: false),
                       16.verticalSpace,
                       SizedBox(
-                        height: 130.h,
+                        height: 190.h,
                         child: ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             cacheExtent: 500,
@@ -53,23 +62,25 @@ class SelectDestination extends ConsumerWidget {
                               return Container(
                                 margin: EdgeInsets.only(right: 8),
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(16.r),
                                         child: Image.network(
                                           'https://picsum.photos/200/300?random=$index',
-                                          width: 100.w,
-                                          height: 100.h,
+                                          width: 150.w,
+                                          height: 150.h,
                                           fit: BoxFit.cover,
                                         )),
                                     8.verticalSpace,
                                     Padding(
                                       padding: EdgeInsets.only(left: 8),
                                       child: Text(
-                                        'Placeholder',
-                                        style: TextStyle(fontSize: 14.sp),
+                                        '${destinations[index]}',
+                                        style: TextStyle(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     )
                                   ],

@@ -1,4 +1,5 @@
 import 'package:airbnb_app/models/booking_model/booking_step_model.dart';
+import 'package:airbnb_app/provider/guest_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,27 +47,43 @@ class SelectGuestsWidget extends ConsumerWidget {
                           context,
                           'Adults',
                           'Ages 13 or above',
-                          () {},
-                          () {},
-                          '0',
+                          () => ref
+                              .read(guestsProvider.notifier)
+                              .decrementAdults(),
+                          () => ref
+                              .read(guestsProvider.notifier)
+                              .incrementAdults(),
+                          ref.watch(guestsProvider).adults.toString(),
                         ),
-                        const Divider(),
+                        Divider(
+                          color: Colors.grey.withOpacity(0.2),
+                        ),
                         _buildGuestsQuanitySelector(
                           context,
                           'Children',
                           'Ages 2-12',
-                          () {},
-                          () {},
-                          '0',
+                          () => ref
+                              .read(guestsProvider.notifier)
+                              .decrementChildren(),
+                          () => ref
+                              .read(guestsProvider.notifier)
+                              .incrementChildren(),
+                          ref.watch(guestsProvider).children.toString(),
                         ),
-                        const Divider(),
+                        Divider(
+                          color: Colors.grey.withOpacity(0.2),
+                        ),
                         _buildGuestsQuanitySelector(
                           context,
                           'Infants',
                           'Under 2',
-                          () {},
-                          () {},
-                          '0',
+                          () => ref
+                              .read(guestsProvider.notifier)
+                              .decrementInfants(),
+                          () => ref
+                              .read(guestsProvider.notifier)
+                              .incrementInfants(),
+                          ref.watch(guestsProvider).infants.toString(),
                         ),
                       ],
                     ),
@@ -115,7 +132,8 @@ class SelectGuestsWidget extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title, style: textTheme.bodyLarge),
-              Text(subtitle, style: textTheme.bodySmall),
+              Text(subtitle,
+                  style: textTheme.bodySmall!.copyWith(color: Colors.grey)),
             ],
           ),
           Row(

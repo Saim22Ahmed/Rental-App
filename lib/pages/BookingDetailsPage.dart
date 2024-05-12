@@ -8,6 +8,7 @@ import 'package:airbnb_app/constants/colors.dart';
 import 'package:airbnb_app/models/booking_model/booking_step_model.dart';
 import 'package:airbnb_app/pages/SelectGuestsWidget.dart';
 import 'package:airbnb_app/provider/booking_steps_provider.dart';
+import 'package:airbnb_app/provider/guest_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,8 +34,8 @@ class _BookingDetailsPageState extends State<BookingDetailsPage> {
           return Scaffold(
 
               // resizeToAvoidBottomInset: false,
-              backgroundColor: Colors.white,
-              // Theme.of(context).colorScheme.background.withOpacity(0.2),
+              // backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.background,
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 leading: IconButton(
@@ -111,47 +112,49 @@ class _BookingDetailsPageState extends State<BookingDetailsPage> {
                       ],
                     )),
               ),
-              bottomNavigationBar:
-                  (ref.watch(stepProvider) == BookingStep.selectDate)
-                      ? null
-                      : BottomAppBar(
-                          padding: EdgeInsets.symmetric(horizontal: 16.w),
-                          notchMargin: 0,
-                          color: Colors.white,
-                          surfaceTintColor: Colors.white,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  ref.read(stepProvider.notifier).state =
-                                      BookingStep.selectDestination;
-                                },
-                                child: Text(
-                                  'Clear all',
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Colors.black,
-                                      fontSize: 16.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              FilledButton.icon(
-                                  style: FilledButton.styleFrom(
-                                      backgroundColor: themecolor,
-                                      foregroundColor: Colors.white,
-                                      minimumSize: Size(100.h, 55.w),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.r))),
-                                  onPressed: () {},
-                                  icon: Icon(OctIcons.search, size: 18.sp),
-                                  label: Text("Search",
-                                      style: TextStyle(fontSize: 19.sp)))
-                            ],
+              bottomNavigationBar: (ref.watch(stepProvider) ==
+                      BookingStep.selectDate)
+                  ? null
+                  : BottomAppBar(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      notchMargin: 0,
+                      color: Theme.of(context).colorScheme.background,
+                      surfaceTintColor: Colors.white,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              // ref.read(stepProvider.notifier).state =
+                              //     BookingStep.selectDestination;
+
+                              ref.read(guestsProvider.notifier).clearAll();
+                            },
+                            child: Text(
+                              'Clear all',
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ));
+                          FilledButton.icon(
+                              style: FilledButton.styleFrom(
+                                  backgroundColor: themecolor,
+                                  foregroundColor: Colors.white,
+                                  minimumSize: Size(100.h, 55.w),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(8.r))),
+                              onPressed: () {},
+                              icon: Icon(OctIcons.search, size: 18.sp),
+                              label: Text("Search",
+                                  style: TextStyle(fontSize: 19.sp)))
+                        ],
+                      ),
+                    ));
         }));
   }
 }

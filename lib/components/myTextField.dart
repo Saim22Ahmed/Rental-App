@@ -68,14 +68,14 @@ class MyTextFormField extends StatelessWidget {
               Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(4.r),
+            borderRadius: BorderRadius.circular(6.r),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.4),
               width: 1.w,
             ),
-            borderRadius: BorderRadius.circular(4.r),
+            borderRadius: BorderRadius.circular(6.r),
           ),
           hintText: hintText,
           hintStyle: TextStyle(

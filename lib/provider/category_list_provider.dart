@@ -1,3 +1,4 @@
+import 'package:airbnb_app/models/category_model/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

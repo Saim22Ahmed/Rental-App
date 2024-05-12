@@ -89,7 +89,10 @@ class SelectDateWidget extends ConsumerWidget {
                           child: Text('Skip'),
                         ),
                         FilledButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            ref.read(step.notifier).state =
+                                BookingStep.selectGuests;
+                          },
                           child: Text(
                             'Next',
                             style: TextStyle(color: Colors.white),

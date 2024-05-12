@@ -49,10 +49,10 @@ class MyNavBar extends ConsumerWidget {
               ),
             ),
             NavigationDestination(
-              icon: Icon(Icons.wb_sunny_outlined),
+              icon: Icon(Icons.travel_explore_outlined),
               label: 'Trips',
               selectedIcon: Icon(
-                Icons.wb_sunny,
+                Icons.travel_explore_rounded,
                 color: themecolor,
               ),
             ),

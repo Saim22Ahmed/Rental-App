@@ -5,6 +5,7 @@ import 'package:airbnb_app/provider/category_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 class CategoryList extends ConsumerWidget {
   CategoryList({super.key});
@@ -26,8 +27,10 @@ class CategoryList extends ConsumerWidget {
 
             return GestureDetector(
               onTap: () {
-                ref.watch(categoryListProvider.notifier).changeIndex(index);
-                log(Selectedindex.toString());
+                ref.watch(categoryListProvider).changeIndex(index);
+                var _selectedIndex =
+                    ref.watch(categoryListProvider).selectedIndex;
+
                 // setState(() {
                 //   selectedIndex = index;
                 // });
