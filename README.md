@@ -1,15 +1,43 @@
-# Airbnb Clone App
 
-A new Flutter project.
+# Airbnb Clone
+
+Some Airbnb app screens with a user-centric design and seamless functionality.
+
+
+
+![image2](https://github.com/Saim22Ahmed/Rental-App/assets/80286799/9df1a41c-527b-4280-9de8-03fb1f9287ad)
+
+
+
+## Major Packages Used
+
+- **State Management**: Riverpod.
+- **Animations Packages**:flutter_animate .
+- **Calender**: syncfusion_flutter_calendar.
+- **Slider**: sleek_circular_slider .
+- **Routing**:  go_router.
+  
+
+![image3](https://github.com/Saim22Ahmed/Rental-App/assets/80286799/fd20aea9-54e5-42e6-8dec-b1caa2747679)
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Ready to take control of your finances with Expensio? Follow these simple steps to get started:
 
-A few resources to get you started if this is your first Flutter project:
+1. Install Flutter on your machine. Find instructions here.
+2. Get the packages by running `flutter pub get`.
+3. Build the project by running `flutter run`.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Feedback
+
+We value your feedback! If you have any questions, suggestions, or encounter any issues while using Expensio, feel free to reach out to our support team at support@expensio.com. Your input helps us improve Expensio for everyone! 
+
+
+## Connect with me
+
+linkedin : [www.linkedin.com/in/saim22ahmed](https://www.linkedin.com/in/saim22ahmed/)
+
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
