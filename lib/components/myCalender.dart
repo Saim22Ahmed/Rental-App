@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:airbnb_app/constants/colors.dart';
+import 'package:airbnb_app/provider/calenderOptionsProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 enum CalenderOptions { year, month, week, day }
@@ -44,17 +46,17 @@ class _MyCalenderState extends State<MyCalender> {
   }
 }
 
-class CalenderOptionsSegmentedButton extends StatefulWidget {
+class CalenderOptionsSegmentedButton extends ConsumerStatefulWidget {
   CalenderOptionsSegmentedButton({super.key});
 
   @override
-  State<CalenderOptionsSegmentedButton> createState() =>
-      _CalenderOptionsSegmentedButtonState();
+  CalenderOptionsSegmentedButtonState createState() =>
+      CalenderOptionsSegmentedButtonState();
 }
 
-class _CalenderOptionsSegmentedButtonState
-    extends State<CalenderOptionsSegmentedButton> {
-  CalenderOptions selected = CalenderOptions.month;
+class CalenderOptionsSegmentedButtonState
+    extends ConsumerState<CalenderOptionsSegmentedButton> {
+  CalenderOptions selected = CalenderOptions.day;
 
   @override
   Widget build(BuildContext context) {
@@ -77,23 +79,32 @@ class _CalenderOptionsSegmentedButtonState
       segments: <ButtonSegment<CalenderOptions>>[
         ButtonSegment<CalenderOptions>(
           value: CalenderOptions.day,
-          label: const Text('Day'),
+          label: const Text(
+            'Dates',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
         ButtonSegment<CalenderOptions>(
           value: CalenderOptions.month,
-          label: const Text('Month'),
+          label: const Text('Month',
+              style: TextStyle(fontWeight: FontWeight.bold)),
         ),
         ButtonSegment<CalenderOptions>(
           value: CalenderOptions.year,
-          label: const Text('Year'),
+          label:
+              const Text('Year', style: TextStyle(fontWeight: FontWeight.bold)),
         ),
       ],
-      selected: <CalenderOptions>{selected},
+      selected: <CalenderOptions>{
+        ref.watch(calenderOptionsProvider),
+      },
       onSelectionChanged: (newValue) {
-        setState(() {
-          selected = newValue.first;
-          log(selected.toString());
-        });
+        // selected = newValue.first;
+        ref
+            .read(calenderOptionsProvider.notifier)
+            .updateCalenderOption(newValue.first);
+
+        log('calender: ${ref.watch(calenderOptionsProvider).toString()}');
       },
     );
   }

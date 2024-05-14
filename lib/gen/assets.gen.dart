@@ -12,6 +12,13 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/airbnb.png
+  AssetGenImage get airbnb => const AssetGenImage('assets/images/airbnb.png');
+
+  /// File path: assets/images/airbnb_icon.png
+  AssetGenImage get airbnbIcon =>
+      const AssetGenImage('assets/images/airbnb_icon.png');
+
   /// File path: assets/images/rentImage.jpg
   AssetGenImage get rentImage =>
       const AssetGenImage('assets/images/rentImage.jpg');
@@ -70,6 +77,8 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        airbnb,
+        airbnbIcon,
         rentImage,
         rentImage10,
         rentImage11,

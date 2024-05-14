@@ -6,6 +6,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -24,6 +25,7 @@ class CategoryDetailsPage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             // Image
@@ -155,38 +157,28 @@ class CategoryDetailsPage extends ConsumerWidget {
                     color: Colors.grey.withOpacity(0.4),
                   ),
                   SizedBox(height: 10.h),
-                  Container(
-                    child: Row(
-                      children: [
-                        Icon(Icons.home_work_outlined),
-                        SizedBox(width: 24.w),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Dedicated Workspace',
-                                  style: TextStyle(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              SizedBox(height: 5.h),
-                              Text(
-                                  'A common area with wifi that\'s well-suited for working',
-                                  style: TextStyle(
-                                    fontSize: 16.sp,
-                                    color: Colors.grey[600],
-                                  )),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  )
+                  detailTile(
+                    'Dedicated Workspace',
+                    'A common area with wifi that\'s well-suited for working',
+                    Icons.home_work_outlined,
+                  ),
+                  SizedBox(height: 20.h),
+                  detailTile(
+                    'Self check-in',
+                    'Check yourself in with the keypad',
+                    OctIcons.key,
+                  ),
+                  SizedBox(height: 20.h),
+                  detailTile(
+                    'Free cancellation for 48 hours',
+                    'Get a full refund if you change your mind',
+                    Icons.calendar_today_outlined,
+                  ),
                 ],
               ),
             )
           ],
-        ),
+        ).animate(delay: 300.ms).fadeIn(duration: 300.ms),
       ),
       bottomNavigationBar: BottomAppBar(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -219,10 +211,42 @@ class CategoryDetailsPage extends ConsumerWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.r))),
                 onPressed: () {},
-                icon: Icon(OctIcons.search, size: 18.sp),
+                icon: Icon(OctIcons.book, size: 18.sp),
                 label: Text("Reserve", style: TextStyle(fontSize: 19.sp)))
           ],
         ),
+      ),
+    );
+  }
+
+  Container detailTile(String title, String desc, IconData? icon) {
+    return Container(
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            size: 20,
+          ),
+          SizedBox(width: 24.w),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                    )),
+                SizedBox(height: 5.h),
+                Text(desc,
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      color: Colors.grey[600],
+                    )),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
